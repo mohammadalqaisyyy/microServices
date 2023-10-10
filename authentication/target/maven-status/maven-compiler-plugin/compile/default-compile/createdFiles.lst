@@ -1,0 +1,4 @@
+com\services\authentication\AuthenticationController.class
+com\services\authentication\User.class
+com\services\authentication\AuthenticationApplication.class
+com\services\authentication\UserDao.class

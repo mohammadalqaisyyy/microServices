@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.services.authentication.AuthenticationApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.339 s - in com.services.authentication.AuthenticationApplicationTests
