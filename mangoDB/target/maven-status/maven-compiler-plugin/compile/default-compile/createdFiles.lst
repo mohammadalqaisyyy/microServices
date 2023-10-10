@@ -1,0 +1,5 @@
+com\services\mangoDB\AnalysisDatabase.class
+com\services\mangoDB\AnalysisDataDocument.class
+com\services\mangoDB\AnalysisDbController.class
+com\services\mangoDB\AnalysisData.class
+com\services\mangoDB\MangoDbApplication.class
