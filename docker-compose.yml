@@ -1,0 +1,77 @@
+version: '3.9'
+services:
+  enterdata-service:
+    build:
+      context: ./enterData
+    ports:
+      - "8082:8082"
+    restart: always
+    depends_on:
+      - mysql-db-service
+      - authentication-service
+  
+  mongo-db-service:
+    build:
+      context: ./mangoDB
+    ports:
+      - "8085:8085"
+    depends_on:
+      - mongodb
+    restart: always
+
+  mysql-db-service:
+    build:
+      context: ./mysqlDB
+    ports:
+      - "8083:8083"
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/numbers
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 123456
+    depends_on:
+      - mysqldb
+
+  authentication-service:
+    build:
+      context: ./authentication
+    ports:
+      - "8081:8081"
+    restart: always
+
+  analytics-service:
+    build:
+      context: ./analytics
+    ports:
+      - "8084:8084"
+    depends_on:
+      - mysql-db-service
+      - mongo-db-service
+    restart: always
+
+  showresults-service:
+    build:
+      context: ./showResults
+    ports:
+      - "8086:8086"
+    depends_on:
+      - authentication-service
+      - mongo-db-service
+    restart: always
+
+  mysqldb:
+    platform: linux/x86_64
+    image: "mysql"
+    restart: always
+    ports:  
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: numbers
+      MYSQL_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: 123456
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    restart: always
